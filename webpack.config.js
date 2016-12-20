@@ -23,7 +23,7 @@ module.exports = {
         path: path.resolve(__dirname, './dist'), // 设置输出目录
         publicPath: "/",
         filename: 'js/[name].[hash].js', // 输出文件名
-        chunkFilename:'js/[name].[hash].js', // 输出文件名
+        chunkFilename:'js/[name].[hash].js', // 按需加载模块输出文件名
     },
     resolve: {
         root: [],
