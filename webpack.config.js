@@ -21,7 +21,7 @@ module.exports = {
     //入口文件输出配置
     output: {
         path: path.resolve(__dirname, './dist'), // 设置输出目录
-        publicPath: "/dist/",
+        publicPath: "/webpack-react/dist/",//如果网站路径直到dist，请注意改为/
         filename: 'js/[name].[hash].js', // 输出文件名
         chunkFilename:'js/[name].[hash].js', // 按需加载模块输出文件名
     },

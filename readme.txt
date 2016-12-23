@@ -6,6 +6,11 @@
 3、根据需要构建项目
 build（生产，打包目录dist）
 #npm run build
+备注：
+生产环境下，如果网站路径直到dist，为防止静态文件无法获取请注意修改
+publicPath: "/webpack-react/dist/"
+为
+publicPath: "/"
 
 watch（生产-观察者模式，打包目录dist）
 #npm run watch
