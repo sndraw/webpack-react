@@ -65,13 +65,13 @@ module.exports = {
                 loader: 'url-loader',
                 query: {
                     limit: 10240, //10kb 图片转base64。设置图片大小，小于此数则转换。
-                    name: 'images/[hash:8].[name].[ext]' //输出目录以及名称
+                    name: 'images/[name].[hash:8].[ext]' //输出目录以及名称
                 }
             }, {
                 test: /\.(woff|woff2|svg|eot|ttf)\??.*$/,
                 loader: 'file',
                 query: {
-                    name: 'fonts/[hash:8].[name].[ext]' //输出目录以及名称
+                    name: 'fonts/[name].[hash:8].[ext]' //输出目录以及名称
                 }
             }, {
                 test: /\.(htm|html)$/i,
