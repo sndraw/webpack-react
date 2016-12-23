@@ -140,10 +140,16 @@ module.exports = {
 //            {from: 'build'}
 //        ], path.resolve(__dirname, "src"))
     ],
-    devServer: {
+    devServer: {//服务器
         historyApiFallback: true,
         progress: true,
-        port: 8080 //端口你可以自定义
+        port: 8080,
+        proxy: {//接口转发
+            '/api': {
+                target: 'http://localhost',//转发地址
+                pathRewrite: {'^/api': ''}//路由重写，与target组装成新的地址,如“/api/getlogo”转发到“http://localhost/getlogo”
+            }
+        }
     }
 
 };
