@@ -13,7 +13,7 @@ module.exports = {
         vendor: [
             'react',
             'react-dom',
-            'jquery'
+//            'jquery'
         ],
         index: path.resolve(__dirname, './app/js/index.js'),
         page: path.resolve(__dirname, './app/js/page.js'),
@@ -21,16 +21,16 @@ module.exports = {
     //入口文件输出配置
     output: {
         path: path.resolve(__dirname, './dist'), // 设置输出目录
-        publicPath: "/",//静态文件目录，如果网站路径直接指到dist目录，请注意改为/
+        publicPath: "/", //静态文件目录，如果网站路径直接指到dist目录，请注意改为/
         filename: 'js/[name].[hash].js', // 输出文件名
-        chunkFilename:'js/[name].[hash].js', // 按需加载模块输出文件名
+        chunkFilename: 'js/[name].[hash].js', // 按需加载模块输出文件名
     },
     resolve: {
         root: [],
         alias: {
-            'jquery': 'jquery',
-            'zui-css': path.join(nodeModulesPath, '/zui/dist/css/zui.min.css'),
-            'zui-js': path.join(nodeModulesPath, '/zui/dist/js/zui.min.js'),
+//            'jquery': 'jquery',
+//            'zui-css': path.join(nodeModulesPath, '/zui/dist/css/zui.min.css'),
+//            'zui-js': path.join(nodeModulesPath, '/zui/dist/js/zui.min.js'),
         },
         //设置require或import的时候可以不需要带后缀
         extensions: ['', '.js', '.less', '.css']
@@ -79,6 +79,17 @@ module.exports = {
             }
         ]
     },
+    babel: {
+        presets: ['es2015', 'stage-0', 'react'],
+        plugins: [
+            [
+                'import', {
+                    libraryName: 'antd',
+                    style: 'css'
+                }
+            ]
+        ]
+    },
     plugins: [
         new webpack.DefinePlugin({
             "process.env": {
@@ -86,11 +97,11 @@ module.exports = {
             }
         }),
 
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery",
-            "window.jQuery": "jquery"
-        }),
+//        new webpack.ProvidePlugin({
+//            $: "jquery",
+//            jQuery: "jquery",
+//            "window.jQuery": "jquery"
+//        }),
         new CleanWebpackPlugin(['css', 'js'], {
             root: path.resolve(__dirname, './dist'),
             verbose: true,

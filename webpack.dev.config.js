@@ -13,7 +13,7 @@ module.exports = {
         vendor: [
             'react',
             'react-dom',
-            'jquery'
+//            'jquery'
         ],
         index: path.resolve(__dirname, './app/js/index.js'),
         page: path.resolve(__dirname, './app/js/page.js'),
@@ -21,16 +21,16 @@ module.exports = {
     //入口文件输出配置
     output: {
         path: path.resolve(__dirname, './dev'), // 设置输出目录
-        publicPath: "/",//静态文件目录，如果网站路径直接指到dev目录，请注意改为/
+        publicPath: "/", //静态文件目录，如果网站路径直接指到dev目录，请注意改为/
         filename: 'js/[name].js', // 输出文件名
         chunkFilename: 'js/[name].js', // 按需加载模块输出文件名
     },
     resolve: {
         root: [],
         alias: {
-            'jquery': 'jquery',
-            'zui-css': path.join(nodeModulesPath, '/zui/dist/css/zui.min.css'),
-            'zui-js': path.join(nodeModulesPath, '/zui/dist/js/zui.min.js'),
+//            'jquery': 'jquery',
+//            'zui-css': path.join(nodeModulesPath, '/zui/dist/css/zui.min.css'),
+//            'zui-js': path.join(nodeModulesPath, '/zui/dist/js/zui.min.js'),
         },
         //设置require或import的时候可以不需要带后缀
         extensions: ['', '.js', '.less', '.css']
@@ -78,17 +78,28 @@ module.exports = {
                 loader: 'html-withimg-loader?exclude=/upload/'
             }]
     },
+    babel: {
+        presets: ['es2015', 'stage-0', 'react'],
+        plugins: [
+            [
+                'import', {
+                    libraryName: 'antd',
+                    style: 'css'
+                }
+            ]
+        ]
+    },
     plugins: [
         new webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: JSON.stringify("development")
             }
         }),
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery",
-            "window.jQuery": "jquery"
-        }),
+//        new webpack.ProvidePlugin({
+//            $: "jquery",
+//            jQuery: "jquery",
+//            "window.jQuery": "jquery"
+//        }),
 //        new CleanWebpackPlugin(['css','js'], {
 //            root: path.resolve(__dirname, './dev'),
 //            verbose: true,
@@ -97,7 +108,7 @@ module.exports = {
 //        }),
         // 分离css
         new ExtractTextPlugin('css/[name].css', {
-             //true为全部模块的css都分离，包括按需加载的css，统一根据入口文件打包，false只分离非按需加载模块的css，按需加载模块的css打包入js
+            //true为全部模块的css都分离，包括按需加载的css，统一根据入口文件打包，false只分离非按需加载模块的css，按需加载模块的css打包入js
             allChunks: true
         }),
         new webpack.optimize.CommonsChunkPlugin({
@@ -147,7 +158,7 @@ module.exports = {
         port: 8080,
         proxy: {//接口转发
             '/api': {
-                target: 'http://localhost',//转发地址
+                target: 'http://localhost', //转发地址
                 pathRewrite: {'^/api': ''}//路由重写，与target组装成新的地址,如“/api/getlogo”转发到“http://localhost/getlogo”
             }
         }
