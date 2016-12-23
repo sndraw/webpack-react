@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
+    "github": "webpack  --config webpack.github.config.js",
     "dev": "webpack --config webpack.dev.config.js",
     "hot": "webpack-dev-server --config webpack.dev.config.js  --devtool eval --progress --colors  --inline --hot --content-base dev"
   },

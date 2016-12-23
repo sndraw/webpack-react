@@ -2,7 +2,9 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 require('./../css/index.scss');
 var AppComponent = require('./../components/indexBox.js');
+require.ensure(['zui-css', 'zui-js'], function (require) {
 
+}, 'zui');
 require.ensure(['zui-css', 'zui-js'], function (require) {
     require('zui-css');
     require('zui-js');

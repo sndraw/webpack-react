@@ -21,7 +21,7 @@ module.exports = {
     //入口文件输出配置
     output: {
         path: path.resolve(__dirname, './dev'), // 设置输出目录
-        publicPath: "/",
+        publicPath: "/",//静态文件目录，如果网站路径直接指到dev目录，请注意改为/
         filename: 'js/[name].js', // 输出文件名
         chunkFilename: 'js/[name].js', // 按需加载模块输出文件名
     },
@@ -97,6 +97,7 @@ module.exports = {
 //        }),
         // 分离css
         new ExtractTextPlugin('css/[name].css', {
+             //true为全部模块的css都分离，包括按需加载的css，统一根据入口文件打包，false只分离非按需加载模块的css，按需加载模块的css打包入js
             allChunks: true
         }),
         new webpack.optimize.CommonsChunkPlugin({

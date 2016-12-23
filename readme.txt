@@ -7,7 +7,7 @@
 build（生产，打包目录dist）
 #npm run build
 备注：
-生产环境下，如果网站路径直到dist，为防止静态文件无法获取请注意修改
+生产环境下，如果网站路径直接指到dist，为防止静态文件无法获取请注意修改
 publicPath: "/webpack-react/dist/"
 为
 publicPath: "/"
