@@ -43,7 +43,16 @@ module.exports = {
                 loader: 'babel',
                 exclude: /node_modules/,
                 query: {
-                    presets: ['react', 'es2015']
+                    presets: ['react', 'stage-0', 'es2015'],
+                    plugins: [
+                        [
+//                            'transform-runtime',//因打包之后，文件太大，故而去除
+                            'import', {
+                                libraryName: 'antd',
+                                style: 'css'
+                            }
+                        ]
+                    ]
                 }
             },
 //            {
@@ -78,17 +87,7 @@ module.exports = {
                 loader: 'html-withimg-loader?exclude=/upload/'
             }]
     },
-    babel: {
-        presets: ['es2015', 'stage-0', 'react'],
-        plugins: [
-            [
-                'import', {
-                    libraryName: 'antd',
-                    style: 'css'
-                }
-            ]
-        ]
-    },
+
     plugins: [
         new webpack.DefinePlugin({
             "process.env": {
