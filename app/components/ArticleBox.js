@@ -17,7 +17,7 @@ var ArticleBox = React.createClass({
                         <Breadcrumb.Item>文章管理</Breadcrumb.Item>
                     </Breadcrumb>
                     <div className="layout-content">
-                        文章管理
+                        这是【文章管理】
                     </div>
                 </div>
                 );
