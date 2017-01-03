@@ -22,7 +22,7 @@ module.exports = {
     //入口文件输出配置
     output: {
         path: path.resolve(__dirname, './dist'), // 设置输出目录
-        publicPath: "/webpack-react/dist/", //静态文件目录，如果网站路径直接指到dist目录，请注意改为/
+        publicPath: "/", //静态文件目录，如果网站路径直接指到dist目录，请注意改为/
         filename: 'js/[name].[hash].js', // 输出文件名
         chunkFilename: 'js/[name].[hash].js', // 按需加载模块输出文件名
     },
