@@ -1,1 +1,0 @@
-webpackJsonp([1],{0:function(e,exports,t){"use strict";var n=t(1),r=t(28);t(294);var a=t(295);r.render(n.createElement(a,null),document.getElementById("content"))},294:function(e,exports){},295:function(e,exports,t){"use strict";var n=t(1),r=n.createClass({displayName:"PageBox",render:function(){return n.createElement("div",{className:"page-box"},"页面")}});e.exports=r}});

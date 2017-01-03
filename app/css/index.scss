@@ -8,9 +8,5 @@ and open the template in the editor.
     Author     : Administrator
 */
 @import "reset.scss";
-
-.index-box{
-    margin: 20px;
-    padding: 10px;
-    background: #adadad;
-}
+@import "scrollbar.scss";
+@import "layout.scss";

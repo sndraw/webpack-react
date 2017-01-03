@@ -13,6 +13,7 @@ module.exports = {
         vendor: [
             'react',
             'react-dom',
+            'react-router',
 //            'jquery'
         ],
         index: path.resolve(__dirname, './app/js/index.js'),
