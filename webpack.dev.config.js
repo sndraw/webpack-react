@@ -86,7 +86,15 @@ module.exports = {
             }, {
                 test: /\.(htm|html)$/i,
                 loader: 'html-withimg-loader?exclude=/upload/'
-            }]
+            }, {
+                test: /\.json$/,
+                loader: 'json-loader',
+                query: {
+                    name: 'json/[name].[hash:8].[ext]' //输出目录以及名称
+                }
+            }, 
+            
+        ]
     },
 
     plugins: [
@@ -147,10 +155,10 @@ module.exports = {
             chunks: ['vendor', 'page'],
             chunksSortMode: 'auto'
         }),
-//        //把指定文件夹下的文件复制到指定的目录
-//        new TransferWebpackPlugin([
-//            {from: 'build'}
-//        ], path.resolve(__dirname, "src"))
+        //把指定文件夹下的文件复制到指定的目录
+        new TransferWebpackPlugin([
+            {from: 'data',to:'data'}
+        ], path.resolve(__dirname,'./app'))
     ],
     devServer: {//服务器
         historyApiFallback: true,

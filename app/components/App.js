@@ -4,6 +4,9 @@ import LogoBox from './../components/LogoBox.js';
 import MenuTreeBox from './../components/MenuTreeBox.js';
 import { Menu, Icon } from 'antd';
 const SubMenu = Menu.SubMenu;
+const source = {
+    getMenus: '/data/menus.json'
+};
 const AsideCollapse = React.createClass({
 
     getInitialState: function () {
@@ -12,39 +15,29 @@ const AsideCollapse = React.createClass({
                 title: "Logo",
                 url: ""
             },
-            menusList: [],
             menusTree: [],
             collapse: false,
         };
     },
     componentDidMount: function () {
-        if (this.isMounted()) {
-            this.setState({
-                menusTree: [
-                    {
-                        "id": "01",
-                        "name": "前台管理",
-                        "url": "",
-                        "cmenus": [
-                            {
-                                "id": "0101",
-                                "name": "微信管理",
-                                "url": "/wechat",
-                            },
-                            {
-                                "id": "0102",
-                                "name": "文章管理",
-                                "url": "/article",
-                            }
-                        ]
-                    },
-                ],
-                logoImg: {
-                    title: "Logo",
-                    url: ""
+        const _this = this;
+        fetch(source.getMenus, {method: 'GET'}).then(function (response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function (result) {
+            if (result && result.code == 1) {
+                if (_this.isMounted()) {
+                    _this.setState({
+                        menusTree: result.data.menusTree ? result.data.menusTree : [],
+                        logoImg: result.data.logoImg ? result.data.logoImg : {}
+                    });
                 }
-            });
-        }
+            }
+        }).catch(function (e) {
+
+        });
     },
     onCollapseChange: function () {
         this.setState({
