@@ -22,7 +22,7 @@
         ],
         "logoImg": {
             "title": "Logo",
-            "url": "/data/logoico.png"
+            "url": "/webpack-react/dist/data/logoico.png"
         }
     }
 }
