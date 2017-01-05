@@ -6,21 +6,20 @@
 
 
 import React from 'react';
-import { Breadcrumb } from 'antd';
+import {Layout, Menu, Breadcrumb, Icon, Alert} from 'antd';
+const {Header, Content, Footer, Sider} = Layout;
 
-var HomeBox = React.createClass({
+const Box = React.createClass({
     render: function () {
         return (
-                <div className="layout-container">
-                    <Breadcrumb>
+                <Content className="layout-content">
+                    <Breadcrumb className="layout-container">
                         <Breadcrumb.Item>首页</Breadcrumb.Item>
                     </Breadcrumb>
-                    <div className="layout-content">
-                        这是【首页】
-                    </div>
-                </div>
+                    <Alert message="欢迎访问管理系统" type="info" />
+                </Content>
                 );
     }
 });
 
-module.exports = HomeBox;
+module.exports = Box;

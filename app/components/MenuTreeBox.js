@@ -32,12 +32,15 @@ var MenuTreeBox = React.createClass({
 //    },
     render: function () {
         const menusTree = this.props.menusTree;
-        const collapse = this.props.collapse;
+        const collapsed = this.props.collapsed;
         const listItems = menusTree.map(function (menu) {
             menu.url = menu.url ? ('#' + menu.url) : '';
             if (!menu.cmenus && menu.url) {
                 return (
-                        <Menu.Item  key={menu.url} title={menu.name} >{collapse ? '...' : menu.name}</Menu.Item>
+                        <Menu.Item  key={menu.url} title={menu.name} >
+                            <Icon type="book" />
+                            <span className="nav-text">{menu.name}</span>
+                        </Menu.Item>
                         );
             }
             if (!menu.cmenus && !menu.url) {
@@ -50,25 +53,32 @@ var MenuTreeBox = React.createClass({
                     return ('');
                 }
                 return (
-                        <Menu.Item  key={cmenu.url} title={cmenu.name}>{collapse ? '...' : cmenu.name}</Menu.Item>
+                        <Menu.Item  key={cmenu.url} title={cmenu.name}>
+                            <Icon type="book" />
+                            <span className="nav-text">{cmenu.name}</span>
+                        </Menu.Item>
                         );
             });
-            return (
-                    <SubMenu  key={menu.id.toString()} title={menu.name}>
-                        {subMenus}
-                    </SubMenu>
-                    );
+            const IconTitle = React.createClass({
+                render: function () {
+                    return (
+                            <span><Icon type="bars"></Icon><span className="nav-text">{menu.name}</span></span>
+                            );
+                }
+            });
+            return (<SubMenu  key={menu.id.toString()} title={<IconTitle/>}>{subMenus}</SubMenu>);
         });
+
         return (
                 <Menu  
-                    className="layout-menu" 
+                    className="layout-menu layout-no-flex" 
                     theme={this.state.theme} 
                     selectedKeys={[this.state.current]} 
                     mode="inline"  
                     inlineIndent="12"
                     onClick={this.handleClick}
                     >
-                    <Menu.Item  key="/" title="首页">首页</Menu.Item>
+                    <Menu.Item  key="/" title="首页"><Icon type="home"></Icon><span className="nav-text">首页</span></Menu.Item>
                     {listItems}
                 </Menu>
                 );

@@ -16,13 +16,18 @@
                         "id": "0102",
                         "name": "文章管理",
                         "url": "/article"
+                    },
+                    {
+                        "id": "0103",
+                        "name": "评论管理",
+                        "url": "/discuss"
                     }
                 ]
             }
         ],
         "logoImg": {
             "title": "Logo",
-            "url": "/data/logoico.png"
+            "url": "/data/logo.png"
         }
     }
 }

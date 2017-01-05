@@ -11,7 +11,7 @@ var LogoBox = React.createClass({
     render: function () {
         const img = this.props.logoImg ? this.props.logoImg : {};
         return (
-                <div className="layout-logo">
+                <div className="layout-logo layout-no-flex">
                     <img className="logo-img" src={img.url ? img.url : ""} alt={img.title ? img.title : ""} />
                 </div>
                 );

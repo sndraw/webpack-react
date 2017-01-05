@@ -6,21 +6,21 @@
 
 
 import React from 'react';
-import { Breadcrumb } from 'antd';
-var WechatBox = React.createClass({
+import {Layout, Menu, Breadcrumb, Icon, Alert} from 'antd';
+const {Header, Content, Footer, Sider} = Layout;
+
+const  Box = React.createClass({
     render: function () {
         return (
-                <div className="layout-container">
-                    <Breadcrumb>
+                <Content className="layout-content">
+                    <Breadcrumb className="layout-container">
                         <Breadcrumb.Item>前台管理</Breadcrumb.Item>
                         <Breadcrumb.Item>微信管理</Breadcrumb.Item>
                     </Breadcrumb>
-                    <div className="layout-content">
-                        这是【微信管理】
-                    </div>
-                </div>
+                    <Alert message="欢迎访问【微信管理】" type="info" />
+                </Content>
                 );
     }
 });
 
-module.exports = WechatBox;
+module.exports = Box;

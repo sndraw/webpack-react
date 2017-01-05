@@ -6,22 +6,21 @@
 
 
 import React from 'react';
-import { Breadcrumb } from 'antd';
+import {Layout, Menu, Breadcrumb, Icon, Alert} from 'antd';
+const {Header, Content, Footer, Sider} = Layout;
 
-var ArticleBox = React.createClass({
+const Box = React.createClass({
     render: function () {
         return (
-                <div className="layout-container">
-                    <Breadcrumb>
+                <Content className="layout-content">
+                    <Breadcrumb className="layout-container">
                         <Breadcrumb.Item>前台管理</Breadcrumb.Item>
                         <Breadcrumb.Item>文章管理</Breadcrumb.Item>
                     </Breadcrumb>
-                    <div className="layout-content">
-                        这是【文章管理】
-                    </div>
-                </div>
+                    <Alert message="欢迎访问【文章管理】" type="info" />
+                </Content>
                 );
     }
 });
 
-module.exports = ArticleBox;
+module.exports = Box;
