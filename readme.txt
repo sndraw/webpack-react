@@ -1,7 +1,7 @@
-﻿webpack使用说明
+webpack使用说明
 
 1、如无node，安装node 
-2、进入snreact目录，安装package.json中的依赖包
+2、进入目录，安装package.json中的依赖包
 #npm install --save-dev
 3、根据需要构建项目
 build（生产，打包目录dist）
