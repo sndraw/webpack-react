@@ -38,3 +38,5 @@ jspm_packages
 /nbproject/private/
 /nbproject
 /dev
+/node_modules/
+.idea/

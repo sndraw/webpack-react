@@ -157,14 +157,9 @@ module.exports = {
         new TransferWebpackPlugin([
             {from: 'data', to: 'data'}
         ], path.resolve(__dirname, './app'))
-    ],
-    devServer: {
-        historyApiFallback: true,
-        hot: true,
-        inline: true,
-        progress: true,
-        port: 9090 //端口你可以自定义
-    },
-    watch: true
-
+    ]
 };
+
+if (process.env.NODE_ENV === 'github') {
+    module.exports.output.publicPath ="/webpack-react/dist/"; // 设置输出目录
+}

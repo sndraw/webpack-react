@@ -4,11 +4,11 @@
   "description": "snweb-admin",
   "main": "index.html",
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack --watch",
-    "github": "webpack  --config webpack.github.config.js",
-    "dev": "webpack --config webpack.dev.config.js",
-    "hot": "webpack-dev-server --config webpack.dev.config.js  --devtool eval --progress --colors  --inline --hot --content-base dev"
+    "build": "cross-env NODE_ENV=production webpack",
+    "watch": "cross-env NODE_ENV=production webpack --watch",
+    "github": "cross-env NODE_ENV=github webpack",
+    "dev": "cross-env NODE_ENV=development webpack --config webpack.dev.config.js",
+    "hot": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.config.js  --devtool eval --progress --colors  --inline --hot --content-base dev"
   },
   "author": "sn",
   "license": "ISC",
@@ -25,6 +25,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "clean-webpack-plugin": "^0.1.14",
     "css-loader": "^0.25.0",
+    "cross-env": "^1.0.6",
     "es6-promise": "^4.0.5",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
