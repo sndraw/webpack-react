@@ -59,7 +59,7 @@ module.exports = {
 //            {
 //                test: /\.jsx?$/,
 //                loader: 'babel',
-//                exclude: /node_modules/,  
+//                exclude: /node_modules/,
 //                query: {
 //                    presets: ['react', 'es2015']
 //                }
@@ -125,16 +125,16 @@ module.exports = {
             async: false
         }),
         //压缩打包的文件
-        new webpack.optimize.UglifyJsPlugin({
-            mangle: {
-                except: ['$super', '$', 'exports', 'require']
-                        //以上变量‘$super’, ‘$’, ‘exports’ or ‘require’，不会被混淆
-            },
-            compress: {
-                //supresses warnings, usually from module minification
-                warnings: false
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     mangle: {
+        //         except: ['$super', '$', 'exports', 'require']
+        //                 //以上变量‘$super’, ‘$’, ‘exports’ or ‘require’，不会被混淆
+        //     },
+        //     compress: {
+        //         //supresses warnings, usually from module minification
+        //         warnings: false
+        //     }
+        // }),
         //允许错误不打断程序
         new webpack.NoErrorsPlugin(),
         new HtmlWebpackPlugin({

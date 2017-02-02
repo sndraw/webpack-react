@@ -107,7 +107,7 @@ module.exports = {
 //            jQuery: "jquery",
 //            "window.jQuery": "jquery"
 //        }),
-        new CleanWebpackPlugin(['css', 'js'], {
+        new CleanWebpackPlugin(['*'], {
             root: path.resolve(__dirname, './dist'),
             verbose: true,
             dry: false,
