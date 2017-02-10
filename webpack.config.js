@@ -87,7 +87,7 @@ module.exports = {
             // vue: 'vue/dist/vue.js'
         },
         //设置require或import的时候可以不需要带后缀
-        extensions: ['', '.js', '.less', '.css', 'scss']
+        extensions: ['.js', '.less', '.css', '.scss']
     },
     module: {
         //加载器配置
