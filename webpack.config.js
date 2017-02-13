@@ -95,20 +95,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel',
-                exclude: /node_modules/,
-                query: {
-                    presets: ['react', 'es2015', 'stage-0'],
-                    plugins: [
-                        [
-//                            'transform-runtime',//因打包之后，文件太大，故而去除
-                            'import',
-                            {
-                                libraryName: 'antd',
-                                style: 'css'
-                            }
-                        ]
-                    ]
-                }
+                exclude: /node_modules/
             },
             //            {
 //                test: /\.jsx?$/,
