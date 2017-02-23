@@ -15,7 +15,8 @@ var MenuTreeBox = React.createClass({
         return {
             theme: 'dark',
             current: current ? current : '/',
-            openKeys:""//默认为空，不可默认为空数组，用以判断是否为当前页面重新刷新进行菜单初始化
+            isFirstLoad:true,//第一次加载标示，用以判断是否为当前页面重新刷新进行菜单初始化
+            openKeys:[]
         };
     },
     handleClick: function (e) {
@@ -26,6 +27,7 @@ var MenuTreeBox = React.createClass({
     },
     onOpenChange:function (e) {
         this.setState({
+            isFirstLoad:false,
             openKeys: e
         });
     },
@@ -52,7 +54,7 @@ var MenuTreeBox = React.createClass({
                     return ('');
                 }
                 //重新刷新当前页面，默认打开当前选中子菜单的父菜单
-                if(_that.state.current && !_that.state.openKeys){
+                if(_that.state.current && _that.state.isFirstLoad){
                     if(_that.state.current == cmenu.url){
                         _that.state.openKeys=[cmenu.fid?cmenu.fid:""];
                     }
