@@ -22,6 +22,7 @@ const  RouterBox = React.createClass({
     }
 });
 
+
 ReactDOM.render(<RouterBox />, document.getElementById('content'));
 
 
