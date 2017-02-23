@@ -3,10 +3,10 @@ var ReactDOM = require('react-dom');
 require('./../css/index.scss');
 import {Router, Route, Link, hashHistory, IndexRoute, Redirect, IndexLink} from 'react-router';
 import App from './../components/App.js';
-import IndexPage from './../pages/IndexPage.js';
-import WechatPage from './../pages/WechatPage.js';
-import ArticlePage from './../pages/ArticlePage.js';
-import ErrorPage from './../pages/ErrorPage.js';
+import IndexPage from './../js/pages/IndexPage.js';
+import WechatPage from './../js/pages/WechatPage.js';
+import ArticlePage from './../js/pages/ArticlePage.js';
+import ErrorPage from './../js/pages/ErrorPage.js';
 const  RouterBox = React.createClass({
     render: function () {
         return (
