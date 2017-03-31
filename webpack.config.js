@@ -9,6 +9,7 @@ var nodeModulesPath = path.join(__dirname, 'node_modules');
 //webpack配置-根据开发模式可改变配置
 var webpackConfig = {
     nameHash: ".[hash:8]",
+    config:path.resolve(__dirname,"./app/js/config.js"),//配置文件
     output: {//输出文件配置
         path: path.resolve(__dirname, './dist'), // 设置输出目录
         publicPath: "/", //静态文件目录，如果网站路径直接指到dist目录，请注意改为/
@@ -39,13 +40,11 @@ var webpackConfig = {
         })
     }
 };
-//github打包模式
-if (process.env.NODE_ENV === 'github') {
-    webpackConfig.output.publicPath = "/webpack-vuejs/dist/"; // 设置输出目录
-}
+
 //开发者模式
 if (process.env.NODE_ENV === 'development') {
     webpackConfig.nameHash = "";
+    webpackConfig.config=path.resolve(__dirname,"./app/js/config.dev.js");
     webpackConfig.output = {//输出文件配置
         path: path.resolve(__dirname, './dev'), // 设置输出目录
         publicPath: "/", //静态文件目录，如果网站路径直接指到dist目录，请注意改为/
@@ -70,24 +69,19 @@ module.exports = {
         vendor: [
             'react',
             'react-dom',
-            'react-router',
-//            'jquery'
+            'react-router'
         ],
-        index: path.resolve(__dirname, './app/js/index.js'),
-        page: path.resolve(__dirname, './app/js/page.js'),
+        main: path.resolve(__dirname, './app/main.js')
     },
     //入口文件输出配置
     output: webpackConfig.output,
     resolve: {
         root: [],
         alias: {
-            // jquery: 'jquery',
-            // 'zui-css': path.join(nodeModulesPath, '/zui/dist/css/zui.min.css'),
-            // 'zui-js': path.join(nodeModulesPath, '/zui/dist/js/zui.min.js'),
-            // vue: 'vue/dist/vue.js'
+            config:webpackConfig.config,//配置文件
         },
         //设置require或import的时候可以不需要带后缀
-        extensions: ['','.js', '.less', '.css', '.scss']
+        extensions: ['', '.js', '.less', '.css', 'scss']
     },
     module: {
         //加载器配置
@@ -97,18 +91,20 @@ module.exports = {
                 loader: 'babel',
                 exclude: /node_modules/
             },
-            //            {
-//                test: /\.jsx?$/,
-//                loader: 'babel',
-//                exclude: /node_modules/,
-//                query: {
-//                    presets: ['react', 'es2015']
-//                }
-//            },
+            {
+                test: /\.jsx?$/,
+                loader: 'babel',
+                exclude: /node_modules/,
+            },
             {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract('style', 'css')
-            }, {
+            },
+            {
+                test: /\.less/,
+                loader: ExtractTextPlugin.extract('style', 'css!less')
+            },
+            {
                 test: /\.scss/,
                 loader: ExtractTextPlugin.extract('style', 'css!sass')
             }, {
@@ -139,9 +135,7 @@ module.exports = {
     plugins: [
         webpackConfig.plugins.define,//全局变量
         // new webpack.ProvidePlugin({
-        //     $: "jquery",
-        //     jQuery: "jquery",
-        //     "window.jQuery": "jquery"
+        //     Config:'config'
         // }),
         webpackConfig.plugins.clean,//清理文件
         // 分离css
@@ -162,16 +156,7 @@ module.exports = {
             favicon: __dirname + '/app/images/favicon.ico',
             inject: 'body',
             hash: false, //默认为true,代表js、css文件后面会跟一个随机字符串,解决缓存问题
-            chunks: ['vendor', 'index'],
-            chunksSortMode: 'auto'
-        }),
-        new HtmlWebpackPlugin({
-            filename: webpackConfig.output.path + '/page.html', //目标文件
-            template: __dirname + '/app/page.html', //模板文件
-            favicon: __dirname + '/app/images/favicon.ico',
-            inject: 'body',
-            hash: false, //默认为true,代表js、css文件后面会跟一个随机字符串,解决缓存问题
-            chunks: ['vendor', 'page'],
+            chunks: ['vendor', 'main'],
             chunksSortMode: 'auto'
         }),
         //把指定文件夹下的文件复制到指定的目录
@@ -183,10 +168,15 @@ module.exports = {
         historyApiFallback: true,
         progress: true,
         port: 8080,
+        headers: {
+        },
         proxy: {//接口转发
             '/api': {
-                target: 'http://localhost', //转发地址
-                pathRewrite: {'^/api': ''}//路由重写，与target组装成新的地址,如“/api/getlogo”转发到“http://localhost/getlogo”
+                target: 'http://localhost:8081', //转发地址
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api/(.*)\.json':'/$1'
+                }//路由重写，与target组装成新的地址,如“/api/getlogo”转发到“http://localhost/getlogo”
             }
         }
     }

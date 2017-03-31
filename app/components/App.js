@@ -4,12 +4,9 @@ import LogoBox from './../components/LogoBox.js';
 import MenuTreeBox from './../components/MenuTreeBox.js';
 import {Layout, Icon} from 'antd';
 const {Header, Content, Footer, Sider} = Layout;
-
+import Config from 'config';
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
-const source = {
-    getMenus: '/data/menus.json'
-};
 const AsideCollapse = React.createClass({
 
     getInitialState: function () {
@@ -25,13 +22,13 @@ const AsideCollapse = React.createClass({
     },
     componentDidMount: function () {
         const _this = this;
-        fetch(source.getMenus, {method: 'GET'}).then(function (response) {
+        fetch(Config.apiUrl+Config.urlsEnum.menu, {method: 'GET'}).then(function (response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");
             }
             return response.json();
         }).then(function (result) {
-            if (result && result.code == 1) {
+            if (result && result.code == 0) {
                 if (_this.isMounted()) {
                     _this.setState({
                         menusList: result.data.menusList ? result.data.menusList : [],

@@ -1,0 +1,36 @@
+{
+    "code": 0,
+    "data": {
+        "menusTree": [
+            {
+                "id": "01",
+                "name": "前台管理",
+                "url": "",
+                "cmenus": [
+                    {
+                        "id": "0101",
+                        "name": "微信管理",
+                        "url": "/wechat",
+                        "fid":"01"
+                    },
+                    {
+                        "id": "0102",
+                        "name": "文章管理",
+                        "url": "/article",
+                        "fid":"01"
+                    },
+                    {
+                        "id": "0103",
+                        "name": "评论管理",
+                        "url": "/discuss",
+                        "fid":"01"
+                    }
+                ]
+            }
+        ],
+        "logoImg": {
+            "title": "Logo",
+            "url": "/data/logo.png"
+        }
+    }
+}
