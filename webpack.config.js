@@ -161,7 +161,7 @@ module.exports = {
         }),
         //把指定文件夹下的文件复制到指定的目录
         new TransferWebpackPlugin([
-            {from: 'data', to: 'data'}
+            {from: 'static', to: 'static'}
         ], path.resolve(__dirname, './app'))
     ],
     devServer: {//服务器
